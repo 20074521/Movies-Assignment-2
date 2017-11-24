@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.Test;
-
 import model.User;
 
 import static models.Fixtures.users;
@@ -27,10 +26,10 @@ public class UserTest
   @Test
   public void testIds()
   {
-    Set<Long> ids = new HashSet<Long>();
+    Set<Long> ids = new HashSet<>();
     for (User user : users)
     {
-      ids.add(user.id);
+      ids.add(user.UserId);
     }
     assertEquals (users.length, ids.size());
   }
@@ -38,6 +37,6 @@ public class UserTest
   @Test
   public void testToString()
   {
-    assertEquals ("User{" + homer.id + ", homer, simpson, 32, male , power plant}", homer.toString());
+    assertEquals ("User{" + homer.UserId + ", homer, simpson, 32, male , power plant}", homer.toString());
   }
 }
