@@ -7,13 +7,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import controllers.MoviesAPI;
+import controllers.MoviesInterFace;
 import model.User;
 
 import static models.Fixtures.users;
 
 public class MoviesAPITest {
 	
-	private MoviesAPI movies;
+	private MoviesInterFace movies;
 	
 	 @Before
 	  public void setup()
@@ -21,7 +22,7 @@ public class MoviesAPITest {
 	    movies = new MoviesAPI();
 	    for (User user : users)
 	    {
-	      movies.createUser(user.fName, user.lName, user.Age, user.Gender , user.Job);
+	      movies.createUser(user.fName, user.lName, user.Age, user.Gender , user.Job , user.role );
 	    }
 	  }
 	 
@@ -35,7 +36,7 @@ public class MoviesAPITest {
 	  public void testUser()
 	  {
 	    assertEquals (users.length, movies.getUsers().size());
-	    movies.createUser("homer", "simpson", "32", "Male", "Power Plant");
+	    movies.createUser("homer", "simpson", "32", "Male", "Power Plant" ,"admin");
 	    assertEquals (users.length+1, movies.getUsers().size());
 	    assertEquals (users[0], movies.getUserByfName(users[0].fName));
 	  }  

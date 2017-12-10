@@ -3,25 +3,30 @@ package model;
 import static com.google.common.base.MoreObjects.toStringHelper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.common.base.Objects;
 
-public class Movies {
+import model.Movies;
+import model.Rating;
+
+public class Movies implements Comparable<Movies>{
 
 	public long MovieId;
-	public static Long   counter = 0l;
-	public String Name , date , link ;
+	public static Long counter=(long) 01;
+	public String title , date , link ;
 	
 	
-	 public List<Rating> movie  = new ArrayList<>();
+	public Map<Long, Rating> rateIndex = new HashMap<>();
 	 
-	
+	public List<Rating>movie = new ArrayList<>();
 
-	public Movies( String name, String date, String link) {
+	public Movies( String title, String date, String link) {
 		
 		this.MovieId = counter ++;
-		this.Name = name;
+		this.title = title;
 		this.date = date;
 		this.link = link;
 	}
@@ -29,7 +34,7 @@ public class Movies {
 	@Override
 	public String toString()
 	{
-	  return toStringHelper(this).addValue(Name)
+	  return toStringHelper(this).addValue(title)
 	                             .addValue(date)
 	                             .addValue(link)
 	                             .addValue(MovieId)
@@ -40,7 +45,7 @@ public class Movies {
 	@Override  
 	public int hashCode()  
 	{  
-	   return Objects.hashCode(this.Name, this.date, this.link, this.MovieId  );  
+	   return Objects.hashCode(this.title, this.date, this.link, this.MovieId  );  
 	}
 
 	@Override  
@@ -49,7 +54,7 @@ public class Movies {
 		if (obj instanceof Movies)
 		{
 			final Movies other = (Movies) obj;
-			return Objects.equal(Name, other.Name)
+			return Objects.equal(title, other.title)
 					&& Objects.equal(date, other.date)
 					&& Objects.equal(link, other.link);
 		}
@@ -58,6 +63,11 @@ public class Movies {
 			return false;
 		}
 	}
-		
+
+	@Override
+	 public int compareTo(Movies movies)
+		{
+			return this.title.compareTo(movies.title);
+	}
 	}
 	

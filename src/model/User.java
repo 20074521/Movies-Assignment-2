@@ -6,26 +6,38 @@ import java.util.Map;
 
 import com.google.common.base.Objects;
 
+import model.Rating;
 
-public class User {
+
+public class User implements Comparable<User> {
 	
- public String fName, lName, Age, Gender, Job ;
+ 
+public String fName, lName, Age, Gender, Job ;
+ public String role;
  public long UserId;
-public static Long   counter = 0l;
+ public static Long counter = (long) 01;
+public Map<Long, Rating> TheRating = new HashMap<>();
  
  public Map<Long , Movies> movies = new HashMap<Long , Movies>();
  
- public User() {
+ 
+ /*public User(String fName, String lName, String age, String gender, String job)
+ {
+   this(fName,lName, age, gender, job, "default");
+ }*/
+ 
 
- }
 
-public User(String fName, String lName, String age, String gender, String job ) {
+public User(String fName, String lName, String age, String gender, String job , String role) {
 	
 	this.fName = fName;
 	this.lName = lName;
 	this.Age = age;
 	this.Gender = gender;
 	this.Job = job;
+	this.role = role;
+	
+	
 	this.UserId = counter++ ;
 }
 
@@ -37,6 +49,8 @@ public String toString()
                              .addValue(Age)
                              .addValue(Gender)   
                              .addValue(Job) 
+                             .addValue(role)
+                            
                              .addValue(UserId) 
                              .toString();
 }
@@ -45,7 +59,7 @@ public String toString()
 @Override  
 public int hashCode()  
 {  
-   return Objects.hashCode(this.fName, this.lName, this.Age, this.Gender , this.Job);  
+   return Objects.hashCode(this.fName, this.lName, this.Age, this.Gender , this.Job , this.role);  
 }
 
 @Override  
@@ -65,6 +79,12 @@ public boolean equals(final Object obj)
 	{
 		return false;
 	}
+}
+
+@Override
+public int compareTo(User user) 
+{
+	return this.lName.compareTo(user.lName);
 }
 
 	}
